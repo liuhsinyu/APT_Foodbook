@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link type="text/css" rel="stylesheet" href="/stylesheets/css/bootstrap.css" />
+      <link type="text/css" rel="stylesheet" href="/stylesheets/css/custom.min.css" />
+      <link type="text/css" rel="stylesheet" href="/stylesheets/css/taggle.css" />
+      <link type="text/css" rel="stylesheet" href="/stylesheets/css/font-awesome.min.css" />
+      <link type="text/css" rel="stylesheet" href="/stylesheets/css/ideal-image-slider.css" />
+      <link type="text/css" rel="stylesheet" href="/stylesheets/css/ideal-image-slider-default.css" />
+      <link type="text/css" rel="stylesheet" href="/stylesheets/css/tag.css" />
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <a href="/" class="navbar-brand">Foodbook</a>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <div class="col-sm-7 col-md-7">
+                    <ul class="nav navbar-nav">
+                        <li><a href="timeline">Sharing Board</a></li>
+                        <!--<li><a href="">Explore</a></li>-->
+                        <li><a href="recipebox">Recipe Box</a></li>
+                        <!--<li><a href="">Calender</a></li>-->
+                        <li><a href="/shoppingpage">Shopping List</a></li>
+                        <li><a href="createpage">Create Your Own Recipe</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 col-md-3">
+                    <form action="/search_recipe" method="post" class="form-horizontal">
+                        <div class="input-group">
+                                <input type="text" class="form-control" placeholder="" id="search_tag" name="search_tag">
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="bs-docs-section">
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="slider">
+                        {% for url in photo_urls %}
+                        <img src={{url}} alt="">
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    {% if isAuthor == False %}
+                    <div id="symbol" align="right" style="position:absolute;right:0;">
+                        {% if isFavorite == True %}
+                            <a href="/addtobox?recipe_id={{recipe_id}}&&type=favorite&&value=false" class="glyphicon glyphicon-heart fa-3x" style="color:crimson"></a>
+                        {% else %}
+                            <a href="/addtobox?recipe_id={{recipe_id}}&&type=favorite&&value=true" class="glyphicon glyphicon-heart-empty fa-3x" style="color:crimson"></a>
+                        {% endif %}
+                        {% if isWish == True %}
+                            <a href="/addtobox?recipe_id={{recipe_id}}&&type=wish&&value=false" class="glyphicon glyphicon-star fa-3x" style="color:crimson"></a>
+                        {% else %}
+                            <a href="/addtobox?recipe_id={{recipe_id}}&&type=wish&&value=true" class="glyphicon glyphicon-star-empty fa-3x" style="color:crimson"></a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    <h1>{{recipe_name}}</h1>recipe by <b>{{author}}</b>
+                    <p>"Chicken breast chunks flavored with bacon, artichoke hearts and herbs in a tomato sauce all over a steaming bowl of linguine."</p>
+                    <tr>
+                        <th>
+                        <span class="glyphicon glyphicon-time"> Time {{estimate_time.hour}}:{{estimate_time.minute}}  </span>
+                        <span class="glyphicon glyphicon-user"> Servings {{portion}}</span>
+                        </th>
+                    </tr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h2>Ingredients</h2>
+
+                    {% for (ingredient,isInList) in ingredients %}
+                        {% if isInList == False %}
+                            <p><a href="addshoplist?recipe_id={{recipe_id}}&ingredient_idx={{loop.index}}&&add=true" class="btn btn-small"><span class="glyphicon glyphicon-plus"></span></a>
+                        {% else %}
+                            <p><a href="addshoplist?recipe_id={{recipe_id}}&ingredient_idx={{loop.index}}&&add=false" class="btn btn-small"><span class="glyphicon glyphicon-minus"></span></a>
+                        {% endif %}
+                        {{ingredient}}</p>
+                    {% endfor %}
+                    {% if isAllInList == False %}
+                        <a href="addshoplist?recipe_id={{recipe_id}}&ingredient_idx=-1&&add=true" class="btn btn-small"><span class="glyphicon glyphicon-plus"></span>  Add all to shopping list</a>
+                    {% else %}
+                    <a href="addshoplist?recipe_id={{recipe_id}}&ingredient_idx=-1&&add=false" class="btn btn-small"><span class="glyphicon glyphicon-minus"></span>  Remove all in shopping list</a>
+                    {% endif%}
+                </div>
+                <div class="col-md-4">
+                    <h2>Directions</h2>
+                    {% for direction in directions %}
+                        <p>{{direction}}</p>
+                    {% endfor %}
+                </div>
+                <div class="col-md-4">
+                    {% if same_list_len >0 %}
+                        <em><h3 class="text-muted">Same Recipes Made By:</h3></em>
+                        {% for same in same_list %}
+                            <em><a href="viewpage?recipe_id={{same['recipe_id']}}"><h4 class="text-warning">{{same['author']}}</h4></a></em>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <ul class="tags">
+                    {% for tag in tags %}
+                        <a href="search_recipes?search_tag={{tag}}"><li class="tag">{{tag}}</li></a>
+                    {% endfor %}
+                </ul>
+                <a href="editpage?recipe_id={{recipe_id}}" class="btn btn-default"><span class="glyphicon glyphicon-edit"> Edit</span></a>
+            </div>
+            <div class="row">
+                <br>
+            <!-- Blog Comments -->
+
+                <!-- Comments Form -->
+                <div class="well">
+                    <h4>Leave a Comment:</h4>
+                    <form role="form" action="/writecomment?recipe_id={{recipe_id}}" method="post">
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" name="comment" id="comment"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+
+                <hr>
+
+                <!-- Posted Comments -->
+
+                <!-- Comment -->
+                {% for comment in comments_list %}
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img class="media-object" src="{{comment.author_profile}}" alt="http://placehold.it/64x64">
+                    </a>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{comment.author}}
+                            <small>{{comment.time}}</small>
+                        </h4>
+                        {{comment.comment_text}}
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+    </div>
+        </div>
+    </div>
+    <script src="/stylesheets/jquery-ui-1.11.4/external/jquery/jquery.js" type="text/javascript"></script>
+    <script src="/stylesheets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script rel="stylesheet" src="/stylesheets/js/jquery-ui.min.js"></script>
+  <script src="/stylesheets/js/ideal-image-slider.min.js" type="text/javascript"></script>
+<script>
+var slider = new IdealImageSlider.Slider({
+	selector: '#slider',
+	height: 350,
+	width: 900,
+});
+slider.start();
+</script>
+</body>
+
+<script>
+  $(function() {
+    var cache = {};
+    var keywords = {{ keywords|safe }};
+    var GG =  ["ike", "ike2", "DDD"];
+    console.log(keywords)
+    console.log(GG)
+    var cache = {};
+    $( "#search_tag" ).autocomplete({
+      minLength: 1,
+      <!--source: keywords-->
+      source: function(request, response) {
+        var term = request.term;
+        if ( term in cache ) {
+          response( cache[ term ] );
+          return;
+        }
+        var results = $.ui.autocomplete.filter(keywords, request.term);
+        response(results.slice(0, 20));
+    }
+    });
+  });
+</script>
+</html>
+{% endautoescape %}

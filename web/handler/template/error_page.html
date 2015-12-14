@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+      <link type="text/css" rel="stylesheet" href="/stylesheets/css/bootstrap.css" />
+      <link type="text/css" rel="stylesheet" href="/stylesheets/css/custom.min.css" />
+      <link type="text/css" rel="stylesheet" href="/stylesheets/css/3-col-portfolio.css" />
+      <link type="text/css" rel="stylesheet" href="/stylesheets/css/tag.css" />
+      <link type="text/css" rel="stylesheet" href="/stylesheets/css/taggle.css" />
+  </head>
+  <body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <a href="/" class="navbar-brand">Foodbook</a>
+            <div class="navbar-collapse collapse" id="navbar-main">
+                <div class="col-sm-7 col-md-7">
+                    <ul class="nav navbar-nav">
+                        <li><a href="timeline">Sharing Board</a></li>
+                        <!--<li><a href="">Explore</a></li>-->
+                        <li><a href="recipebox">Recipe Box</a></li>
+                        <!--<li><a href="">Calender</a></li>-->
+                        <li><a href="/shoppingpage">Shopping List</a></li>
+                        <li><a href="createpage">Create Your Own Recipe</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3 col-md-3">
+                    <form action="/search_recipe" method="post" class="form-horizontal">
+                        <div class="input-group">
+                                <input type="text" class="form-control" placeholder="" id="search_tag" name="search_tag">
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                                    </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class=""bs-docs-section>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert dismissible alert-danger">
+                        <h4>ERROR!</h4>
+                        <p>{{error_msg}}</p>
+                        <a href="{{direct_page}}" class="alert-link">Try Again.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+  <script src="/stylesheets/jquery-ui-1.11.4/external/jquery/jquery.js" type="text/javascript"></script>
+  <script src="/stylesheets/js/bootstrap.min.js" type="text/javascript"></script>
+  <script rel="stylesheet" src="/stylesheets/js/jquery-ui.min.js"></script>
+  <script src="/stylesheets/js/ideal-image-slider.min.js" type="text/javascript"></script>
+    <script>
+      $(function() {
+        var cache = {};
+        var keywords = {{ keywords|safe }};
+        var GG =  ["ike", "ike2", "DDD"];
+        console.log(keywords)
+        console.log(GG)
+        var cache = {};
+        $( "#search_tag" ).autocomplete({
+          minLength: 1,
+          <!--source: keywords-->
+          source: function(request, response) {
+            var term = request.term;
+            if ( term in cache ) {
+              response( cache[ term ] );
+              return;
+            }
+            var results = $.ui.autocomplete.filter(keywords, request.term);
+            response(results.slice(0, 20));
+        }
+        });
+      });
+    </script>
+</html>
+{% endautoescape %}
