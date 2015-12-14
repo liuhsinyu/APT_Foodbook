@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/response_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            >
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/recipe_name"
+                android:text=""
+                android:layout_gravity="center_horizontal"
+                app:bootstrapBrand="primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="40sp"
+                />
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/choose_from_library"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Choose from library"
+                app:bootstrapBrand="primary"
+                android:layout_marginTop="10dp"
+                />
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:id="@+id/use_camera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Use Camera"
+                app:bootstrapBrand="primary"
+                android:layout_marginTop="4dp"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/thumbnail"
+                android:adjustViewBounds="true"
+                android:layout_marginTop="10dp"
+                />
+
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/upload_message"
+                android:layout_width="fill_parent"
+                android:layout_height="100dp"
+                app:bootstrapBrand="primary"
+                android:layout_marginTop="10dp"
+                />
+            <com.facebook.share.widget.ShareButton
+                android:id="@+id/fb_share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textSize="10pt"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                />
+            <com.beardedhen.androidbootstrap.BootstrapButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I made it!"
+                android:enabled="false"
+                android:id="@+id/upload_to_server"
+                app:bootstrapBrand="warning"
+                android:layout_marginTop="20dp"
+                android:textSize="20pt"
+                app:bootstrapSize="lg"
+                android:layout_gravity="center_horizontal"
+                />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

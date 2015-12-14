@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:layout_gravity="center_horizontal">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="60dp"
+                >
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:id="@+id/recipe_name"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="30dp"
+                    app:bootstrapBrand="primary"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:text="" />
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:id="@+id/recipe_author"
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    app:bootstrapBrand="info"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:paddingLeft="20dp"
+                    android:text="" />
+            </LinearLayout>
+            <ImageView
+                android:id="@+id/recipe_photo"
+                android:layout_gravity="center"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                >
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:id="@+id/recipe_time"
+                    android:layout_gravity="left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    app:bootstrapBrand="info"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="1dp"
+                    android:paddingRight="20dp"
+                    android:text="01:00"
+                    android:drawableLeft="@drawable/time_icon"
+                    android:drawablePadding="5dp"/>
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:id="@+id/recipe_portion"
+                    android:layout_gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    app:bootstrapBrand="info"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="1dp"
+                    android:text="01:00"
+                    android:drawableLeft="@drawable/portion_icon"
+                    android:drawablePadding="5dp"
+                    android:paddingRight="20dp"
+                    />
+                <com.beardedhen.androidbootstrap.BootstrapButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/ButtonIMadeIt"
+                    android:text="I made it!"
+                    android:focusable="false"
+                    android:clickable="false"
+                    app:bootstrapBrand="warning"
+                    app:bootstrapSize="lg"
+                    />
+            </LinearLayout>
+
+            <ExpandableListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/expandableListView"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:divider="#A4C739"
+                android:textColor="#000000"
+                android:dividerHeight="0.5dp"
+                android:layout_marginTop="20dp" />
+
+        </LinearLayout>
+
+
+
+</LinearLayout>

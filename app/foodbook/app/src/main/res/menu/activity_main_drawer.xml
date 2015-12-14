@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home_icon"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_shopping_list"
+            android:icon="@drawable/shopping_list_icon"
+            android:title="Shopping List" />
+        <item
+            android:id="@+id/nav_sharing_board"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Sharing Board" />
+    </group>
+
+    <item android:title="Recipe Box">
+        <menu>
+            <item
+                android:id="@+id/nav_my_recipes"
+                android:icon="@drawable/my_recipes_icon"
+                android:title="My Recipes" />
+            <item
+                android:id="@+id/nav_my_favorites"
+                android:icon="@drawable/my_favorite_icon"
+                android:title="My Favorites" />
+            <item
+                android:id="@+id/nav_my_wish"
+                android:icon="@drawable/wish_list_icon"
+                android:title="Wish List" />
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/thumbnail"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="16dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="16dp"
+        android:layout_gravity="center_horizontal"
+        >
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take a picture"
+            android:drawableTop="@drawable/camera_icon"
+            android:id="@+id/take_picture"
+            app:bootstrapBrand="info"
+            />
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use this picture"
+            android:drawableTop="@drawable/use_icon"
+            android:clickable="false"
+            android:id="@+id/use_picture"
+            android:onClick="choosePicture"
+            android:enabled="false"
+            app:bootstrapBrand="success"
+            android:layout_marginLeft="30dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>
